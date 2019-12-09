@@ -14,16 +14,18 @@ class Logger {
   }
 }
 
-class Singleton {
-  constructor() {
-    if(!Singleton.instance) {
-      Singleton.instance = new Logger();
-    }
-  }
+// class Singleton {
+//   constructor() {
+//     if(!Singleton.instance) {
+//       Singleton.instance = new Logger();
+//     }
+//   }
 
-  getInstance() {
-    return Singleton.instance;
-  }
-}
+//   getInstance() {
+//     return Singleton.instance;
+//   }
+// }
 
-module.exports =  Singleton;
+// module.exports =  Singleton;
+// easier way to create instance
+module.exports =  new Logger();

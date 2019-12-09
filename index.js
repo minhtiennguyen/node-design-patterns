@@ -1,8 +1,8 @@
-var Logger = require('./singleton/Logger');
-var Shopper = require('./singleton/Shopper');
-var Store = require('./singleton/Store');
+var logger = require('./singleton/Logger');
+var Shopper = require('./Shopper');
+var Store = require('./Store');
 
-var logger = new Logger().getInstance();
+// var logger = new Logger();
 
 logger.log('Starting config...');
 

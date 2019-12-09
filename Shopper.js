@@ -1,6 +1,6 @@
-var Logger = require('./Logger');
+var logger = require('./singleton/Logger');
 
-var logger = new Logger().getInstance();
+// var logger = new Logger();
 
 class Shopper {
   constructor(name, money=0) {
