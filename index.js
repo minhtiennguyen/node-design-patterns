@@ -1,19 +1,8 @@
-var logger = require('./singleton/Logger');
 var Shopper = require('./Shopper');
-var Store = require('./Store');
+var Employee = require('./Employee');
 
-// var logger = new Logger();
+var alex = new Shopper('Alex Banks', 100);
+var eve = new Employee('Eve Porcello', 100, 'This and That');
 
-logger.log('Starting config...');
-
-var alex = new Shopper('alex', 500);
-var ski_shop = new Store('Steep and Deep Supplies', [
-  { item:'Downhill Skis', qty: 5, price: 750 },
-  { item:'Knit Hat', qty: 20, price: 5 },
-]);
-
-logger.log('Finished config...');
-
-console.log(`${logger.count} logs total`);
-
-logger.logs.map(log => console.log(`${log.message}`));
+console.log( alex.toString() )
+console.log( eve.toString() )

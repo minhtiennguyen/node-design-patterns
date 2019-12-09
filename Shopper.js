@@ -1,13 +1,13 @@
-var logger = require('./singleton/Logger');
+var Person = require('./Person')
 
-// var logger = new Logger();
+class Shopper extends Person {
 
-class Shopper {
-  constructor(name, money=0) {
-    this.name = name;
-    this.money = money;
-    logger.log(`New Shopper: ${name} has ${money} in their account.`);
-  }
+    constructor(name, money=0) {
+        super(name);
+        this.money = money;
+        this.employed = false;
+    }
+
 }
 
 module.exports = Shopper;
