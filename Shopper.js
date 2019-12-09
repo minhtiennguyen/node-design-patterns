@@ -1,13 +1,26 @@
-var logger = require('./singleton/Logger');
-
-// var logger = new Logger();
-
 class Shopper {
-  constructor(name, money=0) {
-    this.name = name;
-    this.money = money;
-    logger.log(`New Shopper: ${name} has ${money} in their account.`);
-  }
+
+    constructor(name='unnamed person') {
+        this._name = name;
+        this._shoppingList = [];
+    }
+
+    set name(value) {
+        this._name = value;
+    }
+
+    get name() {
+        return this._name;
+    }
+
+    get shoppingList() {
+        return this._shoppingList.join(', ');
+    }
+
+    addItemToList(item) {
+        this._shoppingList.push(item);
+    }
+
 }
 
 module.exports = Shopper;
