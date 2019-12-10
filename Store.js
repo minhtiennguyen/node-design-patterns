@@ -1,12 +1,12 @@
-var logger = require('./singleton/Logger');
-
-// var logger = new Logger();
-
 class Store {
-  constructor(name, inventory=[]) {
+  constructor(name, inventory = []) {
     this.name = name;
     this.inventory = inventory;
-    logger.log(`New Store: ${name} has ${inventory.length} items in stock.`);
+  }
+
+  find(itemName) {
+    var index = this.inventory.map(item => item.name).indexOf(itemName);
+    return this.inventory[index];
   }
 }
 
