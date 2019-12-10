@@ -1,33 +1,44 @@
-var { createInterface }  = require('readline');
+var conductor = require('./conductor');
+var { ExitCommand, CreateCommand } = require('./commands');
+
+var { createInterface } = require('readline');
 var rl = createInterface({
-    input: process.stdin,
-    output: process.stdout
+  input: process.stdin,
+  output: process.stdout
 });
 
-console.log('create <fileName> <text> | exit');
+console.log('create <fileName> <text> | history | undo | redo |exit');
 rl.prompt();
 
 rl.on('line', input => {
+  var [commandText, ...remaining] = input.split(' ');
+  var [fileName, ...fileText] = remaining;
+  var text = fileText.join(' ');
 
-    var [ commandText, ...remaining ] = input.split(' ')
-    var [ fileName, ...fileText ] = remaining
-    var text = fileText.join(' ')
+  switch (commandText) {
+    case 'history':
+      conductor.printHistory();
+      break;
+    case 'undo':
+      conductor.undo();
+      break;
+    case 'redo':
+      conductor.redo();
+      break;
+    case 'exit':
+      // console.log('TODO: Exit');
+      conductor.run(new ExitCommand());
+      break;
 
-    switch(commandText) {
+    case 'create':
+      // console.log(`TODO: Create File ${fileName}`);
+      // console.log('file contents:', text);
+      conductor.run(new CreateCommand(fileName, text));
+      break;
 
-        case "exit":
-            console.log('TODO: Exit');
-            break;
+    default:
+      console.log(`${commandText} command not found!`);
+  }
 
-        case "create" :
-            console.log(`TODO: Create File ${fileName}`);
-            console.log('file contents:', text);
-            break;
-
-        default :
-            console.log(`${commandText} command not found!`);
-    }
-
-    rl.prompt();
-
+  rl.prompt();
 });
