@@ -1,19 +1,24 @@
-var logger = require('./singleton/Logger');
-var Shopper = require('./Shopper');
-var Store = require('./Store');
+// var fs = require('fs');
+var path = require('path');
+var FS_Proxy = require('./FS_Proxy');
 
-// var logger = new Logger();
+var fs = new FS_Proxy(require('fs'));
 
-logger.log('Starting config...');
+// var txtFile = path.join(__dirname, 'Readme.txt');
+var mdFile = path.join(__dirname, 'Readme.md');
 
-var alex = new Shopper('alex', 500);
-var ski_shop = new Store('Steep and Deep Supplies', [
-  { item:'Downhill Skis', qty: 5, price: 750 },
-  { item:'Knit Hat', qty: 20, price: 5 },
-]);
+var result = (error, contents) => {
 
-logger.log('Finished config...');
+    if (error) {
+        console.log('\x07');
+        console.error(error);
+        process.exit(0);
+    }
 
-console.log(`${logger.count} logs total`);
+    console.log('reading file...');
+    console.log(contents);
 
-logger.logs.map(log => console.log(`${log.message}`));
+}
+
+// fs.readFile(txtFile, 'UTF-8', result);
+fs.readFile(mdFile, 'UTF-8', result);
