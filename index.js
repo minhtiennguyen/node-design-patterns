@@ -1,19 +1,48 @@
-var logger = require('./singleton/Logger');
-var Shopper = require('./Shopper');
-var Store = require('./Store');
+var InventoryItem = require('./InventoryItem');
 
-// var logger = new Logger();
+require('readline').emitKeypressEvents(process.stdin);
+process.stdin.setRawMode(true);
 
-logger.log('Starting config...');
+console.log('Press any direction key...');
 
-var alex = new Shopper('alex', 500);
-var ski_shop = new Store('Steep and Deep Supplies', [
-  { item:'Downhill Skis', qty: 5, price: 750 },
-  { item:'Knit Hat', qty: 20, price: 5 },
-]);
+var inventory = [
+    new InventoryItem("Poles", 9.99),
+    new InventoryItem("Skis", 799.99),
+    new InventoryItem("Boots", 799.99),
+    new InventoryItem("Burgers", 5.99),
+    new InventoryItem("Fries", 2.99),
+    new InventoryItem("Shake", 4.99),
+    new InventoryItem("Jeans", 59.99),
+    new InventoryItem("Shoes", 39.99)
+];
 
-logger.log('Finished config...');
+process.stdin.on('keypress', (str, key) => {
 
-console.log(`${logger.count} logs total`);
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
 
-logger.logs.map(log => console.log(`${log.message}`));
+    switch(key.name) {
+
+        case 'right' :
+            process.stdout.write('right');
+            break;
+
+        case 'left' :
+            process.stdout.write('left');
+            break;
+
+        case 'down' :
+            process.stdout.write('down');
+            break;
+
+        case 'up' :
+            process.stdout.write('up');
+            break;
+
+        case 'c' :
+            if (key.ctrl) {
+                process.exit()
+            }
+    }
+
+});
