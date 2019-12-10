@@ -1,19 +1,10 @@
-var logger = require('./singleton/Logger');
-var Shopper = require('./Shopper');
-var Store = require('./Store');
+var CatalogItem = require('./CatalogItem');
 
-// var logger = new Logger();
+var boots = new CatalogItem("Leather Boots", 79.99);
+var sneakers = new CatalogItem("Kicks", 39.99);
+var flipFlops = new CatalogItem("California work boots", 19.99);
 
-logger.log('Starting config...');
+console.log( 'boots total: ', `$${boots.total}` );
 
-var alex = new Shopper('alex', 500);
-var ski_shop = new Store('Steep and Deep Supplies', [
-  { item:'Downhill Skis', qty: 5, price: 750 },
-  { item:'Knit Hat', qty: 20, price: 5 },
-]);
-
-logger.log('Finished config...');
-
-console.log(`${logger.count} logs total`);
-
-logger.logs.map(log => console.log(`${log.message}`));
+boots.print();
+sneakers.print();
