@@ -1,19 +1,15 @@
-var logger = require('./singleton/Logger');
-var Shopper = require('./Shopper');
-var Store = require('./Store');
+console.log( "localStorage length: ", localStorage.length );
 
-// var logger = new Logger();
+var uid = localStorage.getItem("user_id");
 
-logger.log('Starting config...');
+console.log( "user_id: ", uid );
 
-var alex = new Shopper('alex', 500);
-var ski_shop = new Store('Steep and Deep Supplies', [
-  { item:'Downhill Skis', qty: 5, price: 750 },
-  { item:'Knit Hat', qty: 20, price: 5 },
-]);
-
-logger.log('Finished config...');
-
-console.log(`${logger.count} logs total`);
-
-logger.logs.map(log => console.log(`${log.message}`));
+if (!uid) {
+    console.log('User ID not found. Setting the user id and token...');
+    localStorage.setItem("token", "TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ");
+    localStorage.setItem("user_id", "12345");
+} else {
+    console.log('User ID found.', uid);
+    console.log('clearning the User ID...');
+    localStorage.clear();
+}
