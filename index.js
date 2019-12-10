@@ -1,19 +1,33 @@
-var logger = require('./singleton/Logger');
-var Shopper = require('./Shopper');
-var Store = require('./Store');
+var { createInterface }  = require('readline');
+var rl = createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-// var logger = new Logger();
+console.log('create <fileName> <text> | exit');
+rl.prompt();
 
-logger.log('Starting config...');
+rl.on('line', input => {
 
-var alex = new Shopper('alex', 500);
-var ski_shop = new Store('Steep and Deep Supplies', [
-  { item:'Downhill Skis', qty: 5, price: 750 },
-  { item:'Knit Hat', qty: 20, price: 5 },
-]);
+    var [ commandText, ...remaining ] = input.split(' ')
+    var [ fileName, ...fileText ] = remaining
+    var text = fileText.join(' ')
 
-logger.log('Finished config...');
+    switch(commandText) {
 
-console.log(`${logger.count} logs total`);
+        case "exit":
+            console.log('TODO: Exit');
+            break;
 
-logger.logs.map(log => console.log(`${log.message}`));
+        case "create" :
+            console.log(`TODO: Create File ${fileName}`);
+            console.log('file contents:', text);
+            break;
+
+        default :
+            console.log(`${commandText} command not found!`);
+    }
+
+    rl.prompt();
+
+});
