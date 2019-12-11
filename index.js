@@ -1,19 +1,13 @@
-var logger = require('./singleton/Logger');
-var Shopper = require('./Shopper');
 var Store = require('./Store');
+var Shopper = require('./Shopper');
+var Mall = require('./Mall');
 
-// var logger = new Logger();
+var catsAndThings = new Store("Cats & Things");
+var insAndOuts = new Store("Ins and Outs");
 
-logger.log('Starting config...');
+var alex = new Shopper("Alex");
+var eve = new Shopper("Eve");
+var sharon = new Shopper("Sharon");
+var mike = new Shopper("Mike");
 
-var alex = new Shopper('alex', 500);
-var ski_shop = new Store('Steep and Deep Supplies', [
-  { item:'Downhill Skis', qty: 5, price: 750 },
-  { item:'Knit Hat', qty: 20, price: 5 },
-]);
-
-logger.log('Finished config...');
-
-console.log(`${logger.count} logs total`);
-
-logger.logs.map(log => console.log(`${log.message}`));
+var valleyMall = new Mall();

@@ -1,13 +1,13 @@
-var logger = require('./singleton/Logger');
-
-// var logger = new Logger();
-
 class Store {
-  constructor(name, inventory=[]) {
-    this.name = name;
-    this.inventory = inventory;
-    logger.log(`New Store: ${name} has ${inventory.length} items in stock.`);
-  }
+
+    constructor(name) {
+        this.name = name;
+    }
+
+    sale(discount) {
+        console.log(`Announce sale at ${this.name}, ${discount}% off everything!`);
+    }
+
 }
 
 module.exports = Store;
